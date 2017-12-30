@@ -13,8 +13,17 @@ export class HomePage {
 
   constructor() {
     this.animales = ANIMALES.splice(0);
+  }
 
-    
+  reproducir (animal:Animal) {
+    console.log(animal);
+
+    let audio = new Audio();
+    audio.src = animal.audio;
+    audio.load();
+    audio.play();
+    animal.reproduciendo = true;
+    setTimeout( () => animal.reproduciendo = false, animal.duracion * 1000);
   }
 
 }
