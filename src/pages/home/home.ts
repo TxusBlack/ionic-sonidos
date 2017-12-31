@@ -9,7 +9,7 @@ import { Animal } from '../../interfaces/animal.interface';
 })
 export class HomePage {
 
-  animales:Animal[] = []
+  animales: Animal[] = [];
   audio = new Audio();
   audioTiempo: any;
 
@@ -43,6 +43,10 @@ export class HomePage {
         animal.reproduciendo = false;
       }
     }
+  }
+
+  borrarAnimal(idx:number) {
+    this.animales.splice(idx, 1);
   }
 
 }
