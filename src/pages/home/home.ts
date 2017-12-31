@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ANIMALES } from '../../data/data.animales';
 import { Animal } from '../../interfaces/animal.interface';
+import { Refresher } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -14,7 +15,8 @@ export class HomePage {
   audioTiempo: any;
 
   constructor() {
-    this.animales = ANIMALES.splice(0);
+    // Hacemos una copia del arreglo con slice(0)
+    this.animales = ANIMALES.slice(0);
   }
 
   reproducir (animal:Animal) {
@@ -49,4 +51,14 @@ export class HomePage {
     this.animales.splice(idx, 1);
   }
 
+  recargarAnimales(refresher: Refresher) {
+    console.log('Inicio del refresh');
+
+    setTimeout(() => {
+      console.log('Terminó el refresh');
+      this.animales = ANIMALES.slice(0);
+      // Al poner que es tipo Refresher las propiedades aparecen despues del punto
+      refresher.complete();
+    }),1500;
+  }
 }
